@@ -1,4 +1,4 @@
-	CREATE TABLE time (
+CREATE TABLE time (
 	  id_time NUMBER NOT NULL,
 	  nome VARCHAR2(400)
 	  );
@@ -68,6 +68,8 @@
   NOCACHE;
   
   SELECT seq_time.NEXTVAL FROM dual;
+  
+  
   
   INSERT INTO time (id_time,nome) VALUES 
   (seq_time.NEXTVAL,'BARCELONA');
@@ -151,5 +153,62 @@
   
   ALTER TABLE jogador ADD CONSTRAINT jogador_equipe_FK FOREIGN KEY (id_equipe) REFERENCES equipe(id_equipe);
   ALTER TABLE tecnico ADD CONSTRAINT tecnico_equipe_FK FOREIGN KEY (id_equipe) REFERENCES equipe(id_equipe);
-
+  
   DROP TABLE time;
+
+ select equi.nome as descricao_equipe,
+       tec.nome as nome_tecnico,
+       jog.nome as nome_jogador
+from equipes equi, tecnico tec, jogador jog
+where equi.id_equipes = tec.id_equipes
+and equi.id_equipes = jog.id_equipes
+
+select equi.nome as descricao_equipe,
+       tec.nome as nome_tecnico
+from equipes equi, tecnico tec
+where equi.id_equipes = tec.id_equipes (+)
+
+select equi.nome as nome,
+       jog.nome as jogador
+from equipes equi, jogador jog
+where equi.id_equipes = jog.id_equipes
+order by nome asc
+
+select count(*), equi.nome
+from equipes equi,
+     JOGADOR jog
+where equi.id_equipes = jog.id_equipes
+group by equi.nome
+
+select equipe.id_equipe, sum(nvl(jogador.salario,0) + nvl(tecnico.salario,0))
+from equipe,
+     jogador,
+     tecnico
+where equipe.id_equipe = jogador.id_equipe(+)
+and equipe.id_equipe = tecnico.ID_EQUIPE(+)
+group by equipe.id_equipe
+
+select equipe.id_equipe, avg(nvl(jogador.salario,0) + nvl(tecnico.salario,0))
+from equipe,
+     jogador,
+     tecnico
+where equipe.id_equipe = jogador.id_equipe(+)
+and equipe.id_equipe = tecnico.ID_EQUIPE(+)
+group by equipe.id_equipe
+
+==================================================  BLOCO ANONIMO =====================================================
+
+// materasystems/cursodeferias2016
+declare
+begin
+  DBMS_OUTPUT.PUT_LINE('HELLO DBMS'); // null; if empty
+end;
+
+declare
+vsEquipe VARCHAR2(400);
+begin
+ select nome into vsEquipe from equipe where id_equipe = 6;
+ DBMS_OUTPUT.PUT_LINE(vsEquipe);
+end;
+
+
