@@ -1,4 +1,4 @@
-CREATE TABLE time (
+			CREATE TABLE time (
 	  id_time NUMBER NOT NULL,
 	  nome VARCHAR2(400)
 	  );
@@ -140,7 +140,7 @@ CREATE TABLE time (
  
   ALTER TABLE equipe ADD CONSTRAINT pk_id_equipe PRIMARY KEY (id_equipe);
 
-  INSERT INTO EQUIPE (id_equipe, nome)
+  INSERT INTO EQUIPE (id_equipes, nome)
   SELECT id_time, nome FROM time;
   
   ALTER TABLE jogador DROP CONSTRAINT jogador_time_FK;
@@ -151,64 +151,61 @@ CREATE TABLE time (
   ALTER TABLE jogador RENAME COLUMN id_time TO id_equipe;
   ALTER TABLE tecnico RENAME COLUMN id_time TO id_equipe;
   
-  ALTER TABLE jogador ADD CONSTRAINT jogador_equipe_FK FOREIGN KEY (id_equipe) REFERENCES equipe(id_equipe);
-  ALTER TABLE tecnico ADD CONSTRAINT tecnico_equipe_FK FOREIGN KEY (id_equipe) REFERENCES equipe(id_equipe);
+  ALTER TABLE jogador ADD CONSTRAINT jogador_equipe_FK FOREIGN KEY (id_equipe) REFERENCES equipes(id_equipe);
+  ALTER TABLE tecnico ADD CONSTRAINT tecnico_equipe_FK FOREIGN KEY (id_equipe) REFERENCES equipes(id_equipe);
   
   DROP TABLE time;
 
- select equi.nome as descricao_equipe,
-       tec.nome as nome_tecnico,
-       jog.nome as nome_jogador
-from equipes equi, tecnico tec, jogador jog
-where equi.id_equipes = tec.id_equipes
-and equi.id_equipes = jog.id_equipes
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Cesar',87700,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Lucio',67700,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Edgar',888,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Luiz',6770880,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Parrera',67700,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Adalberto',645457700,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Robinho',674545700,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Kaka',674545700,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Jorge',645457700,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Tao',645457700,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'NTao',645457700,'12/01/1987',8);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Cesar',87700,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Lucio',67700,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Edgar',888,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Luiz',6770880,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Parrera',67700,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Adalberto',645457700,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Robinho',674545700,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Kaka',674545700,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Jorge',645457700,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'Tao',645457700,'12/01/1987',7);
+INSERT INTO Jogador (ID_JOGADOR,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_jogador.nextval,'NTao',645457700,'12/01/1987',7);
 
-select equi.nome as descricao_equipe,
-       tec.nome as nome_tecnico
-from equipes equi, tecnico tec
-where equi.id_equipes = tec.id_equipes (+)
+INSERT INTO tecnico (ID_TECNICO,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_tecnico.nextval,'Jorge',64545237700,'12/01/1987',7);
+INSERT INTO tecnico (ID_TECNICO,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_tecnico.nextval,'Jorge',64545237700,'12/01/1987',8);
+INSERT INTO tecnico (ID_TECNICO,NOME, SALARIO, DT_NASCIMENTO, ID_EQUIPE) values (seq_tecnico.nextval,'Jorge',64545237700,'12/01/1977',9);
 
-select equi.nome as nome,
-       jog.nome as jogador
-from equipes equi, jogador jog
-where equi.id_equipes = jog.id_equipes
-order by nome asc
+SELECT EQUIP.ID_EQUIPE, SUM ( NVL(JOG.SALARIO, 0) + NVL(TEC.SALARIO, 0))
+FROM EQUIPE EQUIP,
+JOGADOR JOG,
+TECNICO TEC
+WHERE EQUIP.ID_EQUIPE = JOG.ID_EQUIPE AND EQUIP.ID_EQUIPE = TEC.ID_EQUIPE
+GROUP BY EQUIP.ID_EQUIPE;
 
-select count(*), equi.nome
-from equipes equi,
-     JOGADOR jog
-where equi.id_equipes = jog.id_equipes
-group by equi.nome
+SELECT EQUIP.ID_EQUIPE, AVG ( NVL(JOG.SALARIO, 0) + NVL(TEC.SALARIO, 0))
+FROM EQUIPE EQUIP,
+JOGADOR JOG,
+TECNICO TEC
+WHERE EQUIP.ID_EQUIPE = JOG.ID_EQUIPE AND EQUIP.ID_EQUIPE = TEC.ID_EQUIPE
+GROUP BY EQUIP.ID_EQUIPE;
 
-select equipe.id_equipe, sum(nvl(jogador.salario,0) + nvl(tecnico.salario,0))
-from equipe,
-     jogador,
-     tecnico
-where equipe.id_equipe = jogador.id_equipe(+)
-and equipe.id_equipe = tecnico.ID_EQUIPE(+)
-group by equipe.id_equipe
+CREATE TABLE jogo(
+id_jogo number not null,
+id_equipe_visitante number not null,
+id_equipe_local number not null,
+placar_visitante number not null, 
+placar_local number not null,
+local varchar2(200) not null,
+dt_hr_inicio date not null,
+dt_hr_fim date
+);
 
-select equipe.id_equipe, avg(nvl(jogador.salario,0) + nvl(tecnico.salario,0))
-from equipe,
-     jogador,
-     tecnico
-where equipe.id_equipe = jogador.id_equipe(+)
-and equipe.id_equipe = tecnico.ID_EQUIPE(+)
-group by equipe.id_equipe
-
-==================================================  BLOCO ANONIMO =====================================================
-
-// materasystems/cursodeferias2016
-declare
-begin
-  DBMS_OUTPUT.PUT_LINE('HELLO DBMS'); // null; if empty
-end;
-
-declare
-vsEquipe VARCHAR2(400);
-begin
- select nome into vsEquipe from equipe where id_equipe = 6;
- DBMS_OUTPUT.PUT_LINE(vsEquipe);
-end;
-
-
+alter table jogo add constraint pk_id_jogo PRIMARY KEY (id_jogo);
